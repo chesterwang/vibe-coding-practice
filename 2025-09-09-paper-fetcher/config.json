@@ -1,0 +1,24 @@
+{
+  "search_terms": [
+    "generative AI recommendation",
+    "generative recommendation system",
+    "LLM recommendation",
+    "large language model recommendation",
+    "generative retrieval recommendation",
+    "transformer recommendation system",
+    "neural generative recommendation"
+  ],
+  "days_back": 30,
+  "max_results": 50,
+  "email": {
+    "use_local_server": true,
+    "local_server_host": "localhost",
+    "local_server_port": 1025,
+    "smtp_server": "localhost",
+    "smtp_port": 1025,
+    "sender_email": "paper-fetcher@localhost",
+    "sender_password": "",
+    "recipient_email": "recipient@localhost",
+    "use_tls": false
+  }
+}
