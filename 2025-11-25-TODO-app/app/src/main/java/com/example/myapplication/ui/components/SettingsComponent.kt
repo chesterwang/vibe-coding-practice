@@ -28,7 +28,7 @@ fun SettingsScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(8.dp)
             .verticalScroll(rememberScrollState())
     ) {
         // Top app bar with back button
@@ -43,53 +43,53 @@ fun SettingsScreen(
                 }
             }
         )
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         Text(
             text = "AI Prompt Customization",
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(bottom = 16.dp)
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(bottom = 8.dp)
         )
-        
+
         OutlinedTextField(
             value = aiPrompt,
             onValueChange = { aiPrompt = it },
             label = { Text("AI Prompt") },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp),
+                .height(200.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             supportingText = {
                 Text("Customize the prompt used by the AI to generate motivational messages")
             }
         )
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         Button(
             onClick = { onSettingsUpdate(aiPrompt) },
             modifier = Modifier.align(Alignment.End)
         ) {
             Text("Save Settings")
         }
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
+
+        Spacer(modifier = Modifier.height(8.dp))
+
         Text(
             text = "Current Prompt Preview:",
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(bottom = 8.dp)
+            style = MaterialTheme.typography.titleSmall,
+            modifier = Modifier.padding(bottom = 4.dp)
         )
-        
+
         Card(
             modifier = Modifier.fillMaxWidth(),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Text(
                 text = aiPrompt,
-                modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.bodyMedium
+                modifier = Modifier.padding(8.dp),
+                style = MaterialTheme.typography.bodySmall
             )
         }
     }

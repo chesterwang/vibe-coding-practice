@@ -30,7 +30,7 @@ class QwenApiClient(
     suspend fun generateEncouragingMessage(todoListText: String): String =
         withContext(Dispatchers.IO) {
             val prompt = """
-            Based on the following to-do list, generate an encouraging and motivational message:
+            Based on the following to-do list and symbol status, generate an encouraging and motivational message:
             
             $todoListText
             
@@ -52,7 +52,7 @@ class QwenApiClient(
             )
 
             val systemMessage =
-                "You are a helpful assistant that provides encouraging and motivational messages related to task management and productivity."
+                "你是曾国藩，可以 provides encouraging and motivational messages related to task management and productivity."
 
             val params: ChatCompletionCreateParams = ChatCompletionCreateParams.builder()
                 .addSystemMessage(systemMessage)
@@ -60,17 +60,20 @@ class QwenApiClient(
                 .model("qwen-turbo")
                 .build();
 
+                Log.e("prompt",prompt)
+
             try {
                 val chatCompletion: ChatCompletion = client.chat().completions().create(params);
                 System.out.println(chatCompletion);
                 Log.e("test","asdfasdfsdafds")
                 val result = chatCompletion.choices()[0].message().content().get()
-                client.close();
-                result
+//                client.close();
+//                Log.e("client","close")
+                "AI生成提醒（曾国藩话语）： " +result
             } catch (e: Exception) {
                 System.err.println("Error occurred: " + e.message);
                 e.printStackTrace();
-                client.close();
+//                client.close();
                 throw IOException("Error calling Qwen API: ${e.message}")
             }
 

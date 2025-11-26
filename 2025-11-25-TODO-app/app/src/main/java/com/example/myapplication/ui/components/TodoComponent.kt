@@ -33,40 +33,40 @@ fun TodoListView(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(8.dp)
     ) {
         // Add new todo section
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp),
+                .padding(bottom = 8.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(12.dp)
             ) {
                 OutlinedTextField(
                     value = title,
                     onValueChange = { title = it },
                     label = { Text("Task Title", style = MaterialTheme.typography.bodySmall) },
-                    modifier = Modifier.fillMaxWidth().height(36.dp),
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 )
-                
-                Spacer(modifier = Modifier.height(8.dp))
-                
+
+                Spacer(modifier = Modifier.height(12.dp))
+
                 OutlinedTextField(
                     value = description,
                     onValueChange = { description = it },
                     label = { Text("Description (Optional)", style = MaterialTheme.typography.bodySmall) },
-                    modifier = Modifier.fillMaxWidth().height(36.dp),
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
                 )
-                
+
                 Spacer(modifier = Modifier.height(8.dp))
-                
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.End
@@ -82,7 +82,7 @@ fun TodoListView(
                         enabled = title.isNotBlank()
                     ) {
                         Icon(Icons.Default.Add, contentDescription = "Add")
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Spacer(modifier = Modifier.width(4.dp))
                         Text("Add Task")
                     }
                 }
@@ -92,7 +92,7 @@ fun TodoListView(
         // Todo list
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             items(todos) { todo ->
                 TodoItem(
@@ -119,25 +119,26 @@ fun TodoItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp)
-                .height(28.dp),
+                .padding(8.dp)
+                .height(24.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Checkbox(
                 checked = todo.isCompleted,
-                onCheckedChange = { onToggleComplete(todo.id) }
+                onCheckedChange = { onToggleComplete(todo.id) },
+                modifier = Modifier.size(16.dp)
             )
-            
-            Spacer(modifier = Modifier.width(8.dp))
-            
+
+            Spacer(modifier = Modifier.width(6.dp))
+
             Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
                     text = todo.title,
-                    style = if (todo.isCompleted) MaterialTheme.typography.bodyLarge.copy(
+                    style = if (todo.isCompleted) MaterialTheme.typography.bodyMedium.copy(
                         textDecoration = TextDecoration.LineThrough
-                    ) else MaterialTheme.typography.bodyLarge
+                    ) else MaterialTheme.typography.bodyMedium
                 )
                 if (todo.description.isNotEmpty()) {
                     Text(
@@ -149,14 +150,16 @@ fun TodoItem(
                     )
                 }
             }
-            
+
             IconButton(
-                onClick = { onDelete(todo.id) }
+                onClick = { onDelete(todo.id) },
+                modifier = Modifier.size(24.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete task",
-                    tint = MaterialTheme.colorScheme.error
+                    tint = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.size(16.dp)
                 )
             }
         }

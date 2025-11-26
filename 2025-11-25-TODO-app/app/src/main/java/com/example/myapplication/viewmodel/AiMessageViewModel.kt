@@ -1,5 +1,6 @@
 package com.example.myapplication.viewmodel
 
+import androidx.compose.runtime.Composable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.Settings
@@ -14,6 +15,10 @@ import kotlin.random.Random
 class AiMessageViewModel : ViewModel() {
     private val _aiMessage = MutableStateFlow("")
     val aiMessage: StateFlow<String> = _aiMessage.asStateFlow()
+
+
+    val apikey:String = "sk-8cbd7d1f9aef4b408ade7d9c66481e03"
+    val client = QwenApiClient(apikey)
 
     fun generateAiMessage(todos: List<Todo>, settings: Settings) {
         viewModelScope.launch {
@@ -46,7 +51,6 @@ class AiMessageViewModel : ViewModel() {
         }
 
         return try {
-            val client = QwenApiClient(apiKey)
             val todoListText = buildString {
                 append("Current TODO List Status:\n")
                 append("Total tasks: $totalCount\n")
@@ -65,7 +69,7 @@ class AiMessageViewModel : ViewModel() {
                 }
             }
 
-            client.generateEncouragingMessage(todoListText)
+            return client.generateEncouragingMessage(todoListText)
         } catch (e: Exception) {
             e.printStackTrace()
             // Fallback to local generation if API call fails

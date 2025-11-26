@@ -55,7 +55,8 @@ fun MainScreen(
 
         // Bottom half: AI Messages
         AiMessageView(
-            message = if (completionMessage != null) completionMessage!! else aiMessage,
+//            message = if (completionMessage != null) completionMessage!! else aiMessage,
+            message = aiMessage,
             modifier = Modifier
                 .weight(0.3f)
                 .fillMaxWidth()
