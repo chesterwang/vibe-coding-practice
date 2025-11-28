@@ -60,16 +60,16 @@ class QwenApiClient(
                 .model("qwen-turbo")
                 .build();
 
-                Log.e("prompt",prompt)
+            Log.e("prompt", prompt)
 
             try {
                 val chatCompletion: ChatCompletion = client.chat().completions().create(params);
                 System.out.println(chatCompletion);
-                Log.e("test","asdfasdfsdafds")
+                Log.e("test", "asdfasdfsdafds")
                 val result = chatCompletion.choices()[0].message().content().get()
 //                client.close();
 //                Log.e("client","close")
-                "AI生成提醒（曾国藩话语）： " +result
+                "AI生成提醒（曾国藩话语）： " + result
             } catch (e: Exception) {
                 System.err.println("Error occurred: " + e.message);
                 e.printStackTrace();
