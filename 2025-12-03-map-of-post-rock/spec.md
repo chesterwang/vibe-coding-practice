@@ -10,3 +10,12 @@
 2. 步骤二：根据艺术家名字来获取艺术家信息 
     1. 对第一步中的所有艺术家名字按照如下api进行请求。保存为json文件，即第一步中的每个艺术家列表文件对应一个艺术家信息列表文件。
     2. http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=Mogwai&api_key=API_KEY&format=json
+
+
+## 计算相似度
+
+完成如下任务
+
+1. 读取一个json文件（以 artist_details_page_1.json 为例），抽取数据json中的artist对象数组，每个artist对象仅抽取其下的bio.summary字段，然后 使用硅基流动的接口或者sdk来计算summary字段字符串的embedding。 
+2. 挑选合适的本地向量数据库来存储embedding数据和 artist数据。
+3. 对于每个artist，根据 embedding余弦相似度来获取最近的10个艺术家，并且要求相似度必须大于0.3，将相似结果 存储在一个本地日志文件。

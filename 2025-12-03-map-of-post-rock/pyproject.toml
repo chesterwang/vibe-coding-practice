@@ -3,7 +3,7 @@ name = "map-of-post-rock"
 version = "0.1.0"
 description = "A project to map post-rock artists"
 requires-python = ">=3.8"
-dependencies = ["requests>=2.31.0"]
+dependencies = ["requests>=2.31.0", "openai>=1.0.0", "numpy>=1.21.0", "faiss-cpu>=1.8.0", "scikit-learn>=1.3.0", "httpx[socks]"]
 
 [tool.uv]
 index-url = "http://mirrors.aliyun.com/pypi/simple"
