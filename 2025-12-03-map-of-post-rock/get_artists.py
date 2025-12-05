@@ -11,6 +11,15 @@ import json
 import time
 from typing import List, Dict, Any
 
+
+def ensure_output_directory():
+    """
+    Ensure the output directory exists in the same directory as the script
+    """
+    output_dir = os.path.join(os.path.dirname(__file__), 'output')
+    os.makedirs(output_dir, exist_ok=True)
+    return output_dir
+
 # Configuration
 API_KEY = os.getenv("LASTFM_API_KEY", "your_api_key_here")  # Replace with your actual API key
 if API_KEY == "your_api_key_here":
@@ -59,7 +68,9 @@ def save_json(data: Any, filename: str):
     """
     Save data to a JSON file
     """
-    with open(filename, 'w', encoding='utf-8') as f:
+    output_dir = ensure_output_directory()
+    filepath = os.path.join(output_dir, filename)
+    with open(filepath, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 def get_all_artists_by_tag():
@@ -117,10 +128,14 @@ def get_artist_details_for_pages(num_pages: int):
         filename = f"top_artists_page_{page_num}.json"
         
         try:
-            with open(filename, 'r', encoding='utf-8') as f:
+            # First try to read from output directory, then from script directory
+            output_dir = ensure_output_directory()
+            filepath = os.path.join(output_dir, filename)
+
+            with open(filepath, 'r', encoding='utf-8') as f:
                 page_data = json.load(f)
         except FileNotFoundError:
-            print(f"File {filename} not found, skipping...")
+            print(f"File {filename} not found in either output or script directory, skipping...")
             continue
         
         if "topartists" not in page_data or "artist" not in page_data["topartists"]:

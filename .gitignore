@@ -212,3 +212,7 @@ __marimo__/
 node_modules
 .vscode
 *.jar
+
+
+#----chester------------------------
+output
