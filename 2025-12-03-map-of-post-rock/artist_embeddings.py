@@ -262,7 +262,7 @@ def get_artist_detail_files():
     artist_details_files.sort()  # Sort to process in order (page_1, page_2, etc.)
     return artist_details_files
 
-def process_single_artist_file(file_path: str, siliconflow_api_key: str):
+def calculate_embeddings_4_detail_file(file_path: str, siliconflow_api_key: str):
     """
     Process a single artist file to compute embeddings
     """
@@ -333,7 +333,7 @@ if __name__ == "__main__":
     generated_pickle_files = []
 
     for file_path in artist_details_files:
-        embeddings_file = process_single_artist_file(file_path, siliconflow_api_key)
+        embeddings_file = calculate_embeddings_4_detail_file(file_path, siliconflow_api_key)
         generated_pickle_files.append(embeddings_file)
 
     # Combine all embeddings and calculate similarities
