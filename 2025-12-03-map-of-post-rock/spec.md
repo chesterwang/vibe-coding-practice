@@ -1,4 +1,5 @@
 
+# 2025-12-07 第一版
 
 ## 获取艺术家信息数据
 
@@ -19,3 +20,23 @@
 1. 读取一个json文件（以 artist_details_page_1.json 为例），抽取数据json中的artist对象数组，每个artist对象仅抽取其下的bio.summary字段，然后 使用硅基流动的接口或者sdk来计算summary字段字符串的embedding。 
 2. 挑选合适的本地向量数据库来存储embedding数据和 artist数据。
 3. 对于每个artist，根据 embedding余弦相似度来获取最近的10个艺术家，并且要求相似度必须大于0.3，将相似结果 存储在一个本地日志文件。
+
+
+## 画图
+
+参考资料
+1. [MiqG/leiden\_clustering: Cluster your data matrix with the Leiden algorithm.](https://github.com/MiqG/leiden_clustering?tab=readme-ov-file)
+    1. 聚类获取两层社区聚类数据，其中包括了社区的边界。
+2. 利用 ngraph.forcelayout 来画图
+    1. 所有图一起进行聚类已经完成，其中定义了不同的距离、弹性系数等。
+
+
+
+# 第二版
+
+
+1. 第一版 的相似度计算结果表现并不好，至今发现的问题
+    1. 同名艺术家，一个使用拼音，一个使用中文
+    2. 
+
+
